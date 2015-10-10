@@ -1,11 +1,29 @@
 .days{
-  align:center;
-  border-left:3px white solid;
+  vertical-align:center;
+  border: 2px white solid;
   color:black;
-  background-color:#FFFFE0;
+  background-color:#FFFFCC;
+  height:75px;
 }
 
+body{
+  background-color: #EBEBEB;
+}
 .month{
-  align:center;
+  text-align:center;
   background-color:EEEEEE;
+}
+
+
+.weekday{
+  background-color: lavender;
+  border:2px white solid;
+  height:40px;
+}
+.empty{
+  background-color: #EBEBEB
+}
+
+.maintext{
+    padding-left:30px;
 }

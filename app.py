@@ -61,7 +61,6 @@ def calendar():
                 return render_template("calendar.html",month=month,days=days)
     return redirect(url_for('login'))
 
-
 if __name__ == "__main__":
     app.debug = True
     app.secret_key="david veller"

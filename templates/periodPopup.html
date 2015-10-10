@@ -1,6 +1,6 @@
 {% extends 'master.html' %}
 {% block body %}
-<h1>Would you like some advice to help you through shark week?</h1>
+<h1 class="maintext">Would you like some advice to help you through shark week?</h1>
 <ul class="nav nav-tabs">
   <li class="active"><a data-toggle="tab" href="#eat">What should I eat?</a></li>
   <li><a data-toggle="tab" href="#do">What should I do?</a></li>
@@ -9,16 +9,32 @@
 
 <div class="tab-content">
   <div id="eat" class="tab-pane fade in active">
-    <h3>Foods you SHOULD eat</h3>
+    <h3 class="maintext">Things you SHOULDN'T consume</h3>
     <ul>
-      <li>Water</li>
-      <li>Calcium</li>
-      <li>Dark chocolate</li>
+      <li><font size="4"><b>Dairy</b></font></li>
+      <li><font size="4"><b>Sugary foods</b></font></li>
+      <li><font size="4"><b>Salty foods</b></font></li>
+      <li><font size="4"><b>Caffeine</b></font></li>
+      <li><font size="4"><b>Fatty red meats</b></font></li>
+      <li><font size="4"><b>Cold foods</b></font></li>
+    </ul>
+    <h3 class="maintext">Things you SHOULD consume</h3>
+    <ul>
+      <li><font size="4"><b>Water</b></font></li>
+      <p>Prevents acne, keeps away cramps, helps with bloating.</p>
+      <li><font size="4"><b>Calcium</b></font></li>
+      <p>Helps with cramps.</p>
+      <li><font size="4"><b>Dark chocolate</b></font></li>
+      <p>Satisfies cravings, relaxes muscles, happier. Less fat and does not contain dairy like other chocolates.</p>
     </ul>
   </div>
   <div id="do" class="tab-pane fade">
     <h3>Things you SHOULD do</h3>
-    <p>Some content in menu 1.</p>
+    <ul>
+      <li>Exercise</li>
+      <li>Warm up</li>
+      <li>Rest</li>
+    </ul>
   </div>
   <div id="mood" class="tab-pane fade">
     <h3>Hope you feel better</h3>
