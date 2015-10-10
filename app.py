@@ -3,7 +3,6 @@ import utils
 
 app = Flask(__name__)
 
-def verify(): return True
 
 @app.route("/")
 def index():
