@@ -50,7 +50,7 @@ def logout():
 @app.route("/calendar")
 def calendar():
     if 'token' not in session:
-        return render_template("login.html")
+        return redirect(url_for('calendar'))
     else:
         if session['token'] == utils.sess:
             if (time.gmtime())[3] - (utils.logtime)[3] < 1 and (time.gmtime())[2] == (utils.logtime)[2] and (time.gmtime())[1] == (utils.logtime)[1] and (time.gmtime())[0] == (utils.logtime)[0]:
