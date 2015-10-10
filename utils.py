@@ -47,8 +47,11 @@ def authenticate(username, password):
     if s1 == None:
         return 0
     s2 = s1[0]
+    print s2
+    print m
     if s2 == m:
         userstore = username
+        print userstore
         return 1
 
     return 0
@@ -66,7 +69,16 @@ def calendar(month, firstday, numdays):
     return cal
 
 def enterInfo(period, cycle):
+    conn = sqlite3.connect("pNum.db")
+    c = conn.cursor()
     u = hashlib.sha224(userstore)
     secs = time.mktime(time.gmtime())
     ins = "INSERT INTO pNum VALUES (\"%s\", %d, %d, %d)" % (u.hexdigest(), period, cycle, secs )
     c.execute(ins)
+    conn.commit()
+
+def returnAll(unum):
+    u = hashlib.sha224(userstore)
+    query = "SELECT usernum FROM pNum WHERE usernum = %s ORDER BY pDate DESC" % (u.hexdigest())
+    c.execute(query)
+    return c.fetchall()
