@@ -1,5 +1,5 @@
 {% extends "master.html" %}
-
+{% import utils %}
 {% block body %}
 
 <div class="row">
@@ -26,11 +26,11 @@
   {% if (n + firstday) % 7 == 1 %}
 </div>
 <div class="row">
-  <div class="col-md-1 days"> {{n}} </div>
+  <div class="col-md-1 days" id="{{n}}" onclick="periodical()"> {{n}} </div>
   {% elif (n + firstday) % 7 == 0 %}
-  <div class="col-md-1 days"> {{n}} </div>
+  <div class="col-md-1 days" id="{{n}}" onclick="periodical()"> {{n}} </div>
   {% else %}
-  <div class ="col-md-2 days"> {{n}} </div>
+  <div class ="col-md-2 days" id="{{n}}" onclick="periodical()"> {{n}} </div>
   {% endif %}
 {% endfor %}
 {% for n in range((firstday + numdays - 2) % 7) %}
@@ -41,4 +41,21 @@
   {% endif %}
 {% endfor %}
 </div>
+
+<script>
+function periodical(){
+  var pop = document.createElement('div')
+  pop.className = "popup"
+  var form = document.createElement('form')
+  form.method("GET")
+  var period = document.createElement('input')
+  period.type = "text"
+  period.placeholder = "Period Length"
+  var cycle = document.createElement('input')
+  period.type = "text"
+  period.placeholder = "Cycle Length"
+  var button = document.createElement('button')
+  button.innerHTML("submit")
+}
+</script>
 {% endblock %}
