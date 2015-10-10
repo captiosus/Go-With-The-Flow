@@ -1,4 +1,11 @@
-days{
+.days{
   align:center;
-  border-left:black;
+  border-left:3px white solid;
+  color:black;
+  background-color:#FFFFE0;
+}
+
+.month{
+  align:center;
+  background-color:EEEEEE;
 }

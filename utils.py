@@ -3,14 +3,24 @@ import csv
 import hashlib
 import unicodedata
 import random
+import time
 
 sess = ""
 logtime = ""
-#def create():
-#    conn = sqlite3.connect("login.db")
-#    c = conn.cursor()
-#    create = "CREATE TABLE login (user text, pass text)"
-#    c.execute(create)
+userstore = ""
+
+def create():
+    conn = sqlite3.connect("login.db")
+    c = conn.cursor()
+    create = "CREATE TABLE login (user text, pass text, userNum text)"
+    c.execute(create)
+
+def createPeriod():
+    conn = sqlite3.connect("pNum.db")
+    c = conn.cursor()
+    create = "CREATE TABLE login (usernum text, period integer, cycle integer, pDate integer)"
+    c.execute(create)
+
 
 def newUser(username, password):
     conn = sqlite3.connect("login.db")
@@ -19,7 +29,8 @@ def newUser(username, password):
     data = c.fetchone()
     if data is None :
         m = hashlib.sha224(password)
-        query = "INSERT INTO login VALUES (\"%s\", \"%s\")" % (username, m.hexdigest())
+        u = hashlib.sha224(username)
+        query = "INSERT INTO login VALUES (\"%s\", \"%s\", \"%s\")" % (username, m.hexdigest(), u.hexdigest())
         c.execute(query)
         conn.commit()
         return 1
@@ -37,7 +48,7 @@ def authenticate(username, password):
         return 0
     s2 = s1[0]
     if s2 == m:
-        print "hello"
+        userstore = username
         return 1
 
     return 0
@@ -47,3 +58,14 @@ def genToken():
     for x in range(64):
         token += str(random.randrange(0, 9))
     return token
+
+def calendar(month, firstday, numdays):
+    cal = ""
+    cal += '<div class="row"> %s </div>'% month
+
+    return cal
+
+def estInitial(period, cycleL):
+    u = hashlib.sha224(userstore)
+    secs = time.mktime(time.gmtime())
+    in = "INSERT INTO pNum VALUES (\"%s\", %d, %d, %d)" % (u.hexdigest())
