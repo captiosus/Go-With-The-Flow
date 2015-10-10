@@ -9,9 +9,9 @@ def period():
     return render_template("periodPopup.html")
 
 @app.route("/")
+@app.route("/index")
+@app.route("/home")
 def index():
-    #utils.create()
-    #utils.createPeriod()
     return render_template("index.html")
 
 @app.route("/register", methods=["GET", "POST"])
