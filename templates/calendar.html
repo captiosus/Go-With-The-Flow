@@ -1,5 +1,20 @@
 {% extends "master.html" %}
 
 {% block body %}
-{{calendar}}
+
+<div class="row">
+  <div class="col-md-12 month" align="center">{{month}}</div>
+</div>
+
+<div class="row">
+  {% for day in days.split(',') %}
+  {% if day == "Sunday" or day == "Saturday" %}
+  <div class="col-md-1 days">{{day}}</div>
+  {% else %}
+  <div class="col-md-2 days">{{day}}</div>
+  {% endif %}
+  {% endfor %}
+</div>
+
+
 {% endblock %}

@@ -1,6 +1,11 @@
 .days{
   align:center;
-  border-left:1px solid black;
+  border-left:3px white solid;
   color:black;
   background-color:#FFFFE0;
+}
+
+.month{
+  align:center;
+  background-color:EEEEEE;
 }

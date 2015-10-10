@@ -3,7 +3,7 @@ import utils
 
 app = Flask(__name__)
 
-
+def verify(): return True;
 @app.route("/")
 def index():
     return render_template("index.html")
@@ -40,10 +40,11 @@ def logout():
 @app.route("/calendar")
 def calendar():
   if verify():
-      days = {"January":31, "February":28, "March":31, "April":30, "May":31, "June":30, "July":31, "August":31, "September":30, "October":31, "November":30, "December":31}
-      month="January"
+      days="Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday"
+      months = {"January":31, "February":28, "March":31, "April":30, "May":31, "June":30, "July":31, "August":31, "September":30, "October":31, "November":30, "December":31}
+      month="October"
       firstday="2"
-      return render_template("calendar.html",calendar=utils.calendar(month,firstday,days[month]))
+      return render_template("calendar.html",month=month,days=days)
 
 
 if __name__ == "__main__":
