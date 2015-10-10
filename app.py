@@ -36,10 +36,12 @@ def login():
 def logout():
   return render_template("logout.html")
 
+
 @app.route("/calender")
 def calender():
   if verify():
     return render_template("calender.html")
+
 
 if __name__ == "__main__":
     app.debug = True
