@@ -14,9 +14,9 @@ def login():
 def logout():
   return render_template("/logout.html")
 
-@app.route("/calender")
-def calender():
-  return render_template("/calender.html")
+@app.route("/calendar")
+def calendar():
+  return render_template("/calendar.html",month="January")
 
 if __name__ == "__main__":
     app.debug = True
