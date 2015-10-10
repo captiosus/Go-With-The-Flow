@@ -1,0 +1,11 @@
+
+{% extends "master.html" %}
+
+{% block body %}
+
+<h1>About Go with the Flow</h1>
+
+<h2>What we are</h2>
+<p>Go with the Flow is a web app for helping women keep track of their periods.</p>
+
+{% endblock %}
