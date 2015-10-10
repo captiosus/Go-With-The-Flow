@@ -65,7 +65,8 @@ def calendar(month, firstday, numdays):
 
     return cal
 
-def estInitial(period, cycleL):
+def estInitial(period, cycle):
     u = hashlib.sha224(userstore)
     secs = time.mktime(time.gmtime())
-    in = "INSERT INTO pNum VALUES (\"%s\", %d, %d, %d)" % (u.hexdigest())
+    ins = "INSERT INTO pNum VALUES (\"%s\", %d, %d, %d)" % (u.hexdigest(), period, cycle, secs )
+    c.execute(ins)
