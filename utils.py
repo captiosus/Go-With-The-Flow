@@ -1,29 +1,30 @@
 import sqlite3
 import csv
+import hashlib
 
-conn = sqlite3.connect("login.db")
-c = conn.cursor()
-
-def create():
-    create = "CREATE TABLE login (user text, pass text)"
-    c.execute(create)
+#def create():
+#    conn = sqlite3.connect("login.db")
+#    c = conn.cursor()
+#    create = "CREATE TABLE login (user text, pass text)"
+#    c.execute(create)
 
 def newUser(username, password):
-
-    isTaken = c.execute("SELECT EXISTS(SELECT 1 FROM login WHERE username:uname LIMIT 1)", {"uname":username})
-    if (isTaken == 0):
+    conn = sqlite3.connect("login.db")
+    c = conn.cursor()
+    isTaken = c.execute("SELECT EXISTS(SELECT 1 FROM login WHERE user=:uname LIMIT 1)", {"uname":username})
+    if isTaken == 0:
         m = hashlib.sha224(password)
-        user = "INSERT INTO login VALUES(username, m.hexdigest())"
-        c.execute(user)
+        c.execute("INSERT INTO login VALUES(?, ?)", {username, m.hexdigest()})
         return 1
-    else:
-        return 0
+    return 0
 
 
 def authenticate(username, password):
+    conn = sqlite3.connect("login.db")
+    c = conn.cursor()
     m = hashlib.sha224(password)
-    c = c.execute("SELECT password FROM login WHERE username:uname", {"uname":username})
-    if (c == m):
+    c = c.execute("SELECT pass FROM login WHERE user=:uname", {"uname":username})
+    if c == m:
         return 1
 
     return 0
