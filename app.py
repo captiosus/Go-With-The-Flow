@@ -3,10 +3,10 @@ import utils
 
 app = Flask(__name__)
 
+
 @app.route("/period")
 def period():
     return render_template("periodPopup.html")
-
 
 @app.route("/")
 def index():
@@ -41,10 +41,14 @@ def logout():
   return render_template("logout.html")
 
 
-@app.route("/calender")
-def calender():
+@app.route("/calendar")
+def calendar():
   if verify():
-    return render_template("calender.html")
+      days="Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday"
+      months = {"January":31, "February":28, "March":31, "April":30, "May":31, "June":30, "July":31, "August":31, "September":30, "October":31, "November":30, "December":31}
+      month="October"
+      firstday="2"
+      return render_template("calendar.html",month=month,days=days)
 
 
 if __name__ == "__main__":
