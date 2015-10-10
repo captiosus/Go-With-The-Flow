@@ -3,6 +3,10 @@ import utils
 
 app = Flask(__name__)
 
+@app.route("/period")
+def period():
+    return render_template("periodPopup.html")
+
 
 @app.route("/")
 def index():
