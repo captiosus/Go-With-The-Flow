@@ -18,7 +18,7 @@ def create():
 def createPeriod():
     conn = sqlite3.connect("pNum.db")
     c = conn.cursor()
-    create = "CREATE TABLE login (usernum text, period integer, cycle integer, pDate integer)"
+    create = "CREATE TABLE pNum (usernum text, period integer, cycle integer, pDate integer)"
     c.execute(create)
 
 
@@ -73,12 +73,14 @@ def enterInfo(period, cycle):
     c = conn.cursor()
     u = hashlib.sha224(userstore)
     secs = time.mktime(time.gmtime())
-    ins = "INSERT INTO pNum VALUES (\"%s\", %d, %d, %d)" % (u.hexdigest(), period, cycle, secs )
+    ins = "INSERT INTO pNum VALUES (\"%s\", %d, %d, %d)" % (u.hexdigest(), int(period), int(cycle), secs )
     c.execute(ins)
     conn.commit()
 
 def returnAll(unum):
+    conn = sqlite3.connect("pNum.db")
+    c = conn.cursor()
     u = hashlib.sha224(userstore)
-    query = "SELECT usernum FROM pNum WHERE usernum = %s ORDER BY pDate DESC" % (u.hexdigest())
+    query = "SELECT usernum, period, cycle, pDate FROM pNum WHERE usernum = \"%s\" ORDER BY pDate DESC" % (u.hexdigest())
     c.execute(query)
     return c.fetchall()

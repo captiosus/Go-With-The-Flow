@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, session, redirect, url_for, session
-import utils, time
+import utils, time, hashlib
 
 app = Flask(__name__)
 
@@ -49,18 +49,35 @@ def logout():
   return render_template("logout.html")
 
 
-@app.route("/calendar")
+@app.route("/calendar", methods=["GET", "POST"])
 def calendar():
+    if request.method == "POST":
+        period = request.form['period']
+        cycle = request.form['cycle']
+        utils.enterInfo(period, cycle)
     if 'token' not in session:
         return redirect(url_for('login'))
     else:
         if session['token'] == utils.sess:
             if (time.gmtime())[3] - (utils.logtime)[3] < 1 and (time.gmtime())[2] == (utils.logtime)[2] and (time.gmtime())[1] == (utils.logtime)[1] and (time.gmtime())[0] == (utils.logtime)[0]:
+                mon = time.gmtime()[1]
+                day = time.gmtime()[2]
                 days="Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday"
                 months = {"January":31, "February":28, "March":31, "April":30, "May":31, "June":30, "July":31, "August":31, "September":30, "October":31, "November":30, "December":31}
-                month="October"
-                firstday=2
-                return render_template("calendar.html",month=month,days=days, firstday=firstday, numdays=months[month])
+                monthy = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+                return render_template("calendar.html",month=monthy[mon],day=day,days=days,months=months,firstday=2, numdays=31)
+    return redirect(url_for('login'))
+
+@app.route("/history")
+def history():
+    us = hashlib.sha224(utils.userstore)
+    if 'token' not in session:
+        return redirect(url_for('login'))
+    else:
+        if session['token'] == utils.sess:
+            if (time.gmtime())[3] - (utils.logtime)[3] < 1 and (time.gmtime())[2] == (utils.logtime)[2] and (time.gmtime())[1] == (utils.logtime)[1] and (time.gmtime())[0] == (utils.logtime)[0]:
+                his = utils.returnAll(us.hexdigest())
+                return render_template("history.html", his = his)
     return redirect(url_for('login'))
 
 if __name__ == "__main__":

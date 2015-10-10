@@ -7,11 +7,11 @@
 
 <div class="row">
   {% for day in days.split(',') %}
-  {% if day == "Sunday" or day == "Saturday" %}
-  <div class="col-md-1 weekday">{{day}}</div>
-  {% else %}
-  <div class="col-md-2 weekday">{{day}}</div>
-  {% endif %}
+    {% if day == "Sunday" or day == "Saturday" %}
+      <div class="col-md-1 weekday">{{day}}</div>
+    {% else %}
+      <div class="col-md-2 weekday">{{day}}</div>
+    {% endif %}
   {% endfor %}
 </div>
 <div class="row">
@@ -46,16 +46,18 @@ function periodical(){
   var pop = document.createElement('div')
   pop.className = "popup"
   var form = document.createElement('form')
-  form.method("GET")
+  form.method = "post"
   var date = document.createElement('input')
   date.type = "hidden"
   date.value = event.target.id
   var period = document.createElement('input')
   period.type = "text"
+  period.name = "period"
   period.placeholder = "Period Length"
   var cycle = document.createElement('input')
-  period.type = "text"
-  period.placeholder = "Cycle Length"
+  cycle.type = "text"
+  cycle.name = "cycle"
+  cycle.placeholder = "Cycle Length"
   var button = document.createElement('button')
   button.innerHTML = "Submit"
   button.type = "submit"
