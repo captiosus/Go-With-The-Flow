@@ -3,7 +3,11 @@ import utils
 
 app = Flask(__name__)
 
-def verify(): return True;
+
+@app.route("/period")
+def period():
+    return render_template("periodPopup.html")
+
 @app.route("/")
 def index():
     return render_template("index.html")
