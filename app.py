@@ -1,22 +1,33 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, session
 
 app = Flask(__name__)
+
 
 @app.route("/")
 def index():
   return render_template("index.html")
 
-@app.route("/login")
+@app.route("/login", methods=["GET", "POST"])
 def login():
-  return render_template("/login.html")
+  if request.method == "POST":
+    uname = request.form['username']
+    pword = request.form['password']
+    if util.authenticate(uname, pword):
+      session['loggedin'] = True
+      return redirect(url_for('calender'))
+
+  return render_template("login.html")
 
 @app.route("/logout")
 def logout():
-  return render_template("/logout.html")
+  return render_template("logout.html")
 
-@app.route("/calendar")
-def calendar():
-  return render_template("/calendar.html",month="January")
+
+@app.route("/calender")
+def calender():
+  if verify():
+    return render_template("calender.html")
+
 
 if __name__ == "__main__":
     app.debug = True
