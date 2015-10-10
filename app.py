@@ -43,8 +43,8 @@ def calendar():
       days="Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday"
       months = {"January":31, "February":28, "March":31, "April":30, "May":31, "June":30, "July":31, "August":31, "September":30, "October":31, "November":30, "December":31}
       month="October"
-      firstday="2"
-      return render_template("calendar.html",month=month,days=days)
+      firstday=2
+      return render_template("calendar.html",month=month,days=days, firstday=firstday, numdays=months[month])
 
 
 if __name__ == "__main__":
