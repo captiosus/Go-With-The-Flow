@@ -2,14 +2,27 @@
 {% block body %}
 <h1>Would you like some advice to help you through shark week?</h1>
 <ul class="nav nav-tabs">
-  <li role="presentation" class="active"><a href="#">What should I eat?</a>
-    Eat stuff c:
-  </li>
-  <li role="presentation"><a href="#">What should I do?</a>
-  Do stuff :D
-  </li>
-  <li role="presentation"><a href="#">I'm in a bad mood.</a>
-    -insert cute cat video-
-  </li>
+  <li class="active"><a data-toggle="tab" href="#eat">What should I eat?</a></li>
+  <li><a data-toggle="tab" href="#do">What should I do?</a></li>
+  <li><a data-toggle="tab" href="#mood">I'm in a bad mood.</a></li>
 </ul>
+
+<div class="tab-content">
+  <div id="eat" class="tab-pane fade in active">
+    <h3>Foods you SHOULD eat</h3>
+    <ul>
+      <li>Water</li>
+      <li>Calcium</li>
+      <li>Dark chocolate</li>
+    </ul>
+  </div>
+  <div id="do" class="tab-pane fade">
+    <h3>Things you SHOULD do</h3>
+    <p>Some content in menu 1.</p>
+  </div>
+  <div id="mood" class="tab-pane fade">
+    <h3>Hope you feel better</h3>
+    <p>Some content in menu 2.</p>
+  </div>
+</div>
 {% endblock %}
