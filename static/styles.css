@@ -1,4 +1,6 @@
-days{
+.days{
   align:center;
-  border-left:black;
+  border-left:1px solid black;
+  color:black;
+  background-color:#FFFFE0;
 }

@@ -27,3 +27,9 @@ def authenticate(username, password):
         return 1
 
     return 0
+
+def calendar(month, firstday, numdays):
+    cal = ""
+    cal += '<div class="row"> %s </div>'% month
+
+    return cal
